@@ -14,6 +14,10 @@ RSpec.describe Book,"モデルに関するテスト", type: :model do
             expect(book).to be_valid
             expect(book.errors[:title]).to include("can't be blank")
         end
-        it ""
+        it "bodyが空白の場合にバリデーションチェックされ空白のエラーメッセージが帰ってきているか" do
+            book = Book.new(title:'hoge', body:'')
+            expect(book).to be_valid
+            expect(book.errors[:body]).to include("can't be blank")
+        end
     end
 end
