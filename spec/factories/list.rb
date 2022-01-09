@@ -1,4 +1,4 @@
-//Fakerを使用する際の生成文字数はtitleが10文字、bodyは30文字とします。
+#Fakerを使用する際の生成文字数はtitleが10文字、bodyは30文字とします。
 
 FactoryBot.define do
   factory :list do
