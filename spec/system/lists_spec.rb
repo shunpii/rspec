@@ -140,3 +140,25 @@ require 'rails_helper'
   #       テストコード
   
   
+  describe '編集画面のテスト' do
+    before do
+      visit todolist_edit_path
+    end
+    context '表示の確認' do
+      it '編集前のタイトルと本文がフォームに表示(セット)されている' do
+        expect(page).to have_field 'list[title]', with: list.title
+        expect(page).to have_field 'list[body]', with: list.body
+      end
+      it '保存ボタンが表示される' do
+        expect(page).to have_button '保存'
+      end
+    end
+    context '更新処理に関するテスト' do
+      it '更新後のリダイレクト先は正しいか' do
+        fill_in 'list[title]', with: Faker::Lorem.characters(number:5)
+        fill_in 'list[body]', with: Faker::Lorem.characters(number:20)
+        click_button '保存'
+        expect(page).to have_current_path todolist_path(list)
+      end
+    end
+  end
